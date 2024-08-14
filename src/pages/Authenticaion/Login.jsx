@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom"
 
 
 const Login = () => {
   return (
-    <div className="w-full md:h-screen flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center">
         <div className="m-auto max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
 	<h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
 	<p className="text-sm text-center dark:text-gray-600">Dont have account?
-		<a href="#" rel="noopener noreferrer" className="focus:underline hover:underline">Sign up here</a>
+		<Link to={"/signup"} className="focus:underline hover:underline">Sign up here</Link>
 	</p>
 	<div className="my-6 space-y-4">
 		<button aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600 hover:bg-blue-900 hover:text-white">
