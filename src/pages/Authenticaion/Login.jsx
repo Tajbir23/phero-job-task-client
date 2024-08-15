@@ -25,12 +25,13 @@ const Login = () => {
 			const user = await userCredentials.user
 			const {data} = await baseUrl.post('/login', {email: user?.email})
 			console.log(data)
-			localStorage.setItem('token', data)
+			localStorage.setItem('token', data?.token)
 			setUser({
 				name: user.displayName,
 				email: user.email,
                 uid: user.uid,
                 photoUrl: user.photoURL,
+				role: data?.role
 			})
 			navigate(from, {replace: true})
 			setLoading(false)
@@ -49,12 +50,13 @@ const Login = () => {
 		const result = await signInWithPopup(auth, provider)
 		const user = await result.user
 		const {data} = await baseUrl.post('/login', {email: user?.email})
-		localStorage.setItem('token', data)
+		localStorage.setItem('token', data?.token)
 		setUser({
 			name: user.displayName,
 			email: user.email,
             uid: user.uid,
             photoUrl: user.photoURL,
+			role: data?.role
 		})
 		navigate(from, {replace: true})
 		} catch (error) {
@@ -101,7 +103,7 @@ const Login = () => {
                 type="submit"
                 className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
               >
-                Sign Up
+                Sign In
               </button>}
 	</form>
 </div>
