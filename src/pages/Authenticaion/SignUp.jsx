@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import baseUrl from "../../hooks/useBaseUrl";
@@ -6,6 +6,9 @@ import axios from "axios";
 import { useState } from "react";
 const SignUp = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -26,11 +29,11 @@ const SignUp = () => {
       await createUserWithEmailAndPassword(auth, email, password)
       
       await updateProfile(auth.currentUser, {displayName: name, photoURL: url})
-      const {data} = await baseUrl.post('/signup', {name, email, photoUrl: url})
+      await baseUrl.post('/signup', {name, email, photoUrl: url})
       
       setLoading(false)
+      navigate(from, {replace: true})
 
-      console.log(data)
     } catch (error) {
       setLoading(false)
       console.log(error)
