@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import {AuthContext} from '../providers/AuthProvider';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
 import Loading from "./Loading";
 
@@ -9,10 +9,12 @@ const Navbar = () => {
   const {user, loading} = useContext(AuthContext)
   const [open, setOpen] = useState(false)
 
+  console.log(user)
   const nav = Array.from(Array(10).keys())
   const navLink = (
     <>
       <li>Home</li>
+      <NavLink to="/dashboard" >Dashboard</NavLink>
       {nav.map((items, i) => <li key={i}>Hello</li>)}
     </>
   )

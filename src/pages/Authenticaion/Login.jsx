@@ -50,6 +50,7 @@ const Login = () => {
 		const result = await signInWithPopup(auth, provider)
 		const user = await result.user
 		const {data} = await baseUrl.post('/login', {email: user?.email})
+		console.log(data)
 		localStorage.setItem('token', data?.token)
 		setUser({
 			name: user.displayName,

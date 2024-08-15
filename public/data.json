@@ -1,0 +1,69 @@
+[
+    {
+      "brand_name": "TechNova",
+      "categories": [
+        "Smartphones",
+        "Laptops",
+        "Tablets",
+        "Smart TVs",
+        "Wearable Devices",
+        "Home Audio Systems"
+      ]
+    },
+    {
+      "brand_name": "ElectroWave",
+      "categories": [
+        "Refrigerators",
+        "Microwave Ovens",
+        "Air Conditioners",
+        "Washing Machines",
+        "Vacuum Cleaners",
+        "Water Purifiers"
+      ]
+    },
+    {
+      "brand_name": "GizmoWorks",
+      "categories": [
+        "Gaming Consoles",
+        "Smart Speakers",
+        "VR Headsets",
+        "Drones",
+        "Action Cameras",
+        "Bluetooth Headsets"
+      ]
+    },
+    {
+      "brand_name": "PowerTech",
+      "categories": [
+        "Power Banks",
+        "Charging Cables",
+        "Surge Protectors",
+        "Battery Chargers",
+        "Solar Chargers",
+        "Portable Generators"
+      ]
+    },
+    {
+      "brand_name": "HomeGenius",
+      "categories": [
+        "Smart Home Hubs",
+        "Security Cameras",
+        "Smart Doorbells",
+        "Thermostats",
+        "Smart Lighting",
+        "Robot Vacuums"
+      ]
+    },
+    {
+      "brand_name": "SoundWave",
+      "categories": [
+        "Bluetooth Speakers",
+        "Soundbars",
+        "Home Theater Systems",
+        "Headphones",
+        "Turntables",
+        "Wireless Earbuds"
+      ]
+    }
+  ]
+  

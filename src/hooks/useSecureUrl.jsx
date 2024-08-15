@@ -19,6 +19,7 @@ const useSecureUrl = () => {
             return config;
         },
         function (error) {
+            setLoading(false)
             return Promise.reject(error);
         }
     );
