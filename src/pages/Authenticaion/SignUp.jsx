@@ -3,12 +3,14 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import baseUrl from "../../hooks/useBaseUrl";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
+  const {setUser} = useContext(AuthContext)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -26,11 +28,20 @@ const SignUp = () => {
       })
       const url = await res.data.data.url
       
-      await createUserWithEmailAndPassword(auth, email, password)
+      const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
       
       await updateProfile(auth.currentUser, {displayName: name, photoURL: url})
-      await baseUrl.post('/signup', {name, email, photoUrl: url})
-      
+      const {data} = await baseUrl.post('/signup', {name, email, photoUrl: url})
+      console.log(data)
+      localStorage.setItem('token', data.token)
+
+      setUser({
+        name: userCredentials?.user?.displayName,
+        email: userCredentials?.user?.email,
+        uid: userCredentials?.user?.uid,
+        photoUrl: userCredentials?.user?.photoURL,
+      })
+
       setLoading(false)
       navigate(from, {replace: true})
 

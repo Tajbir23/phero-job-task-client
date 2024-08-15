@@ -1,7 +1,41 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom"
+import { auth } from "../../firebase/firebase";
+import baseUrl from "../../hooks/useBaseUrl";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Login = () => {
+	const [loading, setLoading] = useState(false)
+	const {setUser} = useContext(AuthContext)
+
+	const handleSubmit = async(e) => {
+		e.preventDefault();
+		setLoading(true)
+		const email = e.target.email.value
+		const password = e.target.password.value;
+
+		try {
+			const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+			const user = await userCredentials.user
+			const {data} = await baseUrl.post('/login', {email: user?.email})
+			console.log(data)
+			localStorage.setItem('token', data)
+			setUser({
+				name: user.displayName,
+				email: user.email,
+                uid: user.uid,
+                photoUrl: user.photoURL,
+			})
+			setLoading(false)
+		} catch (error) {
+			console.log(error.message)
+			setLoading(false)
+		}
+	}
+
+	
   return (
     <div className="w-full h-screen flex items-center justify-center">
         <div className="m-auto max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
@@ -22,7 +56,7 @@ const Login = () => {
 		<p className="px-3 dark:text-gray-600">OR</p>
 		<hr  className="w-full dark:text-gray-600" />
 	</div>
-	<form noValidate="" action="" className="space-y-8">
+	<form onSubmit={handleSubmit} className="space-y-8">
 		<div className="space-y-4">
 			<div className="space-y-2">
 				<label htmlFor="email" className="block text-sm">Email address</label>
@@ -35,7 +69,14 @@ const Login = () => {
 				<input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 			</div>
 		</div>
-		<button type="button" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in</button>
+		{loading ? <div className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">
+                <div className="w-6 h-6 m-auto border-4 border-dashed rounded-full animate-spin dark:border-white"></div>
+              </div>: <button
+                type="submit"
+                className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
+              >
+                Sign Up
+              </button>}
 	</form>
 </div>
     </div>
