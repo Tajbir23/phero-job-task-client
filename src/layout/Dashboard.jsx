@@ -68,7 +68,7 @@ const Dashboard = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Product Name</label>
-                        <input id="productName" name="productName"
+                        <input required id="productName" name="productName"
                             type="text"
                             placeholder="Enter product name"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -76,7 +76,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Product Brand</label>
-                        <select id="brandName" name="brandName"
+                        <select required id="brandName" name="brandName"
                             onChange={(e) => setBrandName(e.target.value)}
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
@@ -90,7 +90,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Category</label>
-                        <select id="category" name="category"
+                        <select required id="category" name="category"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
                             <option value="">Select a category</option>
@@ -103,7 +103,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                        <input id="image" name="image"
+                        <input required id="image" name="image"
                             type="text"
                             placeholder="Enter product image url"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -111,7 +111,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Price</label>
-                        <input id="price" name="price"
+                        <input required id="price" name="price"
                             type="number"
                             placeholder="Enter product price"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -119,7 +119,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Price</label>
-                        <input id="rating" name="rating"
+                        <input required id="rating" name="rating"
                             type="number"
                             placeholder="Enter product rating"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -127,7 +127,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Details</label>
-                        <textarea id="details" name="details"
+                        <textarea required id="details" name="details"
                             placeholder="Enter product details"
                             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />

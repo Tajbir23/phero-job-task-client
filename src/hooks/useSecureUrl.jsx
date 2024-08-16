@@ -4,7 +4,8 @@ import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 
 const secureUrl = axios.create({
-    baseURL: "http://localhost:5000"
+    // baseURL: "http://localhost:5000"
+    baseURL: "https://phero-job-task-server.onrender.com"
 })
 const useSecureUrl = () => {
     const navigate = useNavigate();
