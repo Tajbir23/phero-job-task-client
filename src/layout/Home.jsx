@@ -6,9 +6,12 @@ const Home = () => {
   return (
     <div>
         <Navbar />
-        <div className="pt-20 px-10">
+        <div className="pt-20 md:px-5">
           <Outlet />
         </div>
+        <footer className="bg-gray-200 p-4 text-gray-800">
+        <p>�� 2023 ProductScope. All rights reserved.</p>
+      </footer>
     </div>
   )
 }

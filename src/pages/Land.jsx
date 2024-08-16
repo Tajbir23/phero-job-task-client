@@ -10,7 +10,7 @@ const Land = () => {
   const [filter, setFilter] = useState({
     search: "",
     category: "",
-    price_range: "1000000",
+    price_range: "100000",
     sort_order: "",
   })
   const [products, setProducts] = useState([])
@@ -101,18 +101,44 @@ const Land = () => {
             </select>
 
             <div className="flex items-center">
-              <span className="mr-2 text-gray-600">Price Range: 0 to {filter.price_range}</span>
+              <span className="mr-2 text-gray-600 ">Price Range: 0 to {filter.price_range}</span>
               <input 
                 type="range"
                 min="0"
-                max="1000000"
-                step="50"
+                max="100000"
+                step="100"
+                className="w-48"
                 onChange={(e) => setFilter({...filter, price_range: e.target.value})}
               />
             </div>
           </div>
         )}
       </div>
+
+      {/* Products section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map(product => (
+          <div key={product.id} className=" p-4">
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden h-full">
+              <img src={product.image} alt={product.ProductName} className="w-full md:h-64 h-44 object-cover" />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-gray-800">{product.productName}</h3>
+                <h4 className="text-lg mt-2">Brand: {product.brandName}</h4>
+                <h4 className="text-lg mb-2">Category: {product.category}</h4>
+                <span className="text-gray-600">Price: ${product.price}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination */}
+
+      {/* Add your pagination logic here */}
+
+      {/* Footer */}
+      
+      
     </div>
   );
 };
