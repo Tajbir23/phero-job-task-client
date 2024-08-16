@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import {AuthContext} from '../providers/AuthProvider';
 import { Link, NavLink } from "react-router-dom";
 import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
@@ -8,14 +8,23 @@ import Loading from "./Loading";
 const Navbar = () => {
   const {user, loading} = useContext(AuthContext)
   const [open, setOpen] = useState(false)
-
-  console.log(user)
-  const nav = Array.from(Array(10).keys())
+  const [categories, setCategories] = useState([])
+  
+  useEffect(() => {
+    fetch('/data.json')
+     .then(res => res.json())
+     .then(result => {
+        const data = result.flatMap(item => item.categories)
+        setCategories(data)
+      });
+  },[open])
+  console.log(categories)
+  
   const navLink = (
     <>
-      <li>Home</li>
+      <li><NavLink to="/">Home</NavLink></li>
       <NavLink to="/dashboard" >Dashboard</NavLink>
-      {nav.map((items, i) => <li key={i}>Hello</li>)}
+      {categories.map((item, i) => <li key={i}><NavLink to={item}>{item}</NavLink></li>)}
     </>
   )
   return (

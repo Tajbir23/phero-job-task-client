@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import useSecureUrl from "./../hooks/useSecureUrl"
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
     const [data, setData] = useState([]);
     const [brandName, setBrandName] = useState("");
     const [categories, setCategories] = useState([]);
+    const secureBaseUrl = useSecureUrl()
 
     useEffect(() => {
         fetch('/data.json', {
@@ -25,11 +28,44 @@ const Dashboard = () => {
         }
     }, [brandName, data]);
 
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const productName = e.target.productName.value;
+        const brandName = e.target.brandName.value;
+        const category = e.target.category.value;
+        const price = Number(e.target.price.value);
+        const details = e.target.details.value;
+        const image = e.target.image.value
+        const date = Date.now()
+
+        const newProduct = {
+            productName,
+            brandName,
+            category,
+            price,
+            details,
+            image,
+            date,
+        };
+
+        try {
+            const res = await secureBaseUrl.post('/products', newProduct)
+            console.log(res.data);
+            if(res.data.acknowledged){
+                toast.success('Product updated successfully')
+                e.target.reset();
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">Add New Product</h2>
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Product Name</label>
                         <input id="productName" name="productName"
