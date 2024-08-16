@@ -13,7 +13,9 @@ const Land = () => {
     price_range: "100000",
     sort_order: "",
   })
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(10)
 
   useEffect(() => {
     fetch('/data.json', {
@@ -37,11 +39,14 @@ const Land = () => {
 
 
   useEffect(() => {
-    baseUrl.get(`/products?search=${filter?.search}&&brand_name=${brandName}&&category=${filter?.category}&&price_range=${filter?.price_range}&&sort_order=${filter?.sort_order}`)
+    baseUrl.get(`/products?search=${filter?.search}&&brand_name=${brandName}&&category=${filter?.category}&&price_range=${filter?.price_range}&&sort_order=${filter?.sort_order}&&current_page=${currentPage}`)
     .then((response) => response.data)
-    .then((data) => setProducts(data))
+    .then((data) => {
+      setProducts(data.result)
+      setTotalPage(data.totalPage)
+    })
     .catch((error) => console.log(error))
-  },[filter, brandName])
+  },[filter, brandName, currentPage])
 
   console.log(products)
 
@@ -75,7 +80,7 @@ const Land = () => {
               className=" p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Brand</option>
-              {data.map(item => (
+              {data?.map(item => (
                 <option key={item.brand_name} value={item.brand_name}>{item.brand_name}</option>
               ))}
             </select>
@@ -85,7 +90,7 @@ const Land = () => {
               onChange={(e) => setFilter({...filter, category: e.target.value})}
             >
               <option value="">Select Category</option>
-              {categories.map(category => (
+              {categories?.map(category => (
                 <option key={category} value={category}>{category}</option>
               ))}
             </select>
@@ -104,9 +109,9 @@ const Land = () => {
               <span className="mr-2 text-gray-600 ">Price Range: 0 to {filter.price_range}</span>
               <input 
                 type="range"
-                min="0"
+                min="500"
                 max="100000"
-                step="100"
+                step="500"
                 className="w-48"
                 onChange={(e) => setFilter({...filter, price_range: e.target.value})}
               />
@@ -117,28 +122,28 @@ const Land = () => {
 
       {/* Products section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {products.map(product => (
-          <div key={product.id} className=" p-4">
+        {products?.map(product => (
+          <div key={product?.id} className=" p-4">
             <div className="bg-white shadow-lg rounded-lg overflow-hidden h-full">
-              <img src={product.image} alt={product.ProductName} className="w-full md:h-64 h-44 object-cover" />
+              <img src={product?.image} alt={product?.ProductName} className="w-full md:h-64 h-44 object-cover" />
               <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-800">{product.productName}</h3>
-                <h4 className="text-lg mt-2">Brand: {product.brandName}</h4>
-                <h4 className="text-lg mb-2">Category: {product.category}</h4>
-                <span className="text-gray-600">Price: ${product.price}</span>
+                <h3 className="text-xl font-semibold text-gray-800">{product?.productName}</h3>
+                <h4 className="text-lg mt-2">Brand: {product?.brandName}</h4>
+                <h4 className="text-lg mb-2">Category: {product?.category}</h4>
+                <h1 className="text-gray-600">Price: ${product?.price}</h1>
+                <h1 className="text-gray-600">Rating: {product?.rating || 5}</h1>
+                <span className="text-gray-600">{product?.details}</span>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      {/* Pagination */}
-
-      {/* Add your pagination logic here */}
-
-      {/* Footer */}
       
-      
+      <div className="flex gap-5 items-center justify-end my-10">
+        <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} className="bg-blue-300 px-3 py-1 hover:bg-white hover:border border-black">Previous</button>
+        {currentPage}
+        <button disabled={currentPage === totalPage} onClick={() => setCurrentPage(currentPage + 1)} className="bg-blue-300 px-3 py-1 hover:bg-white hover:border border-black">Next</button>
+      </div>
     </div>
   );
 };

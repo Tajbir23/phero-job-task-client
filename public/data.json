@@ -1,69 +1,68 @@
 [
-    {
-      "brand_name": "TechNova",
+  {
+      "brand_name": "Walton",
       "categories": [
-        "Smartphones",
-        "Laptops",
-        "Tablets",
-        "Smart TVs",
-        "Wearable Devices",
-        "Home Audio Systems"
+          "Smartphones",
+          "Laptops",
+          "Tablets",
+          "Smart TVs",
+          "Refrigerators",
+          "Air Conditioners"
       ]
-    },
-    {
-      "brand_name": "ElectroWave",
+  },
+  {
+      "brand_name": "Minister",
       "categories": [
-        "Refrigerators",
-        "Microwave Ovens",
-        "Air Conditioners",
-        "Washing Machines",
-        "Vacuum Cleaners",
-        "Water Purifiers"
+          "Microwave Ovens",
+          "Refrigerators",
+          "Washing Machines",
+          "Electric Cookers",
+          "Induction Cooktops",
+          "Air Fryers"
       ]
-    },
-    {
-      "brand_name": "GizmoWorks",
+  },
+  {
+      "brand_name": "Singer Bangladesh",
       "categories": [
-        "Gaming Consoles",
-        "Smart Speakers",
-        "VR Headsets",
-        "Drones",
-        "Action Cameras",
-        "Bluetooth Headsets"
+          "Televisions",
+          "Washing Machines",
+          "Microwave Ovens",
+          "Vacuum Cleaners",
+          "Electric Irons",
+          "Sewing Machines"
       ]
-    },
-    {
-      "brand_name": "PowerTech",
+  },
+  {
+      "brand_name": "MyOne",
       "categories": [
-        "Power Banks",
-        "Charging Cables",
-        "Surge Protectors",
-        "Battery Chargers",
-        "Solar Chargers",
-        "Portable Generators"
+          "Smart TVs",
+          "Home Theater Systems",
+          "Bluetooth Speakers",
+          "Refrigerators",
+          "Electric Kettles",
+          "Blenders"
       ]
-    },
-    {
-      "brand_name": "HomeGenius",
+  },
+  {
+      "brand_name": "Vision",
       "categories": [
-        "Smart Home Hubs",
-        "Security Cameras",
-        "Smart Doorbells",
-        "Thermostats",
-        "Smart Lighting",
-        "Robot Vacuums"
+          "Refrigerators",
+          "Microwave Ovens",
+          "Air Conditioners",
+          "Televisions",
+          "Fans",
+          "Washing Machines"
       ]
-    },
-    {
-      "brand_name": "SoundWave",
+  },
+  {
+      "brand_name": "Samsung Bangladesh",
       "categories": [
-        "Bluetooth Speakers",
-        "Soundbars",
-        "Home Theater Systems",
-        "Headphones",
-        "Turntables",
-        "Wireless Earbuds"
+          "Smartphones",
+          "Smart TVs",
+          "Tablets",
+          "Washing Machines",
+          "Refrigerators",
+          "Microwave Ovens"
       ]
-    }
-  ]
-  
+  }
+]

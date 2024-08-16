@@ -118,6 +118,14 @@ const Dashboard = () => {
                         />
                     </div>
                     <div>
+                        <label className="block text-sm font-medium text-gray-700">Price</label>
+                        <input id="rating" name="rating"
+                            type="number"
+                            placeholder="Enter product rating"
+                            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
                         <label className="block text-sm font-medium text-gray-700">Details</label>
                         <textarea id="details" name="details"
                             placeholder="Enter product details"
