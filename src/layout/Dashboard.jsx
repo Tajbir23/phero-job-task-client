@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import useSecureUrl from "./../hooks/useSecureUrl"
 import toast from "react-hot-toast";
+import Loading from "./../components/Loading"
 
 const Dashboard = () => {
     const [data, setData] = useState([]);
     const [brandName, setBrandName] = useState("");
     const [categories, setCategories] = useState([]);
-    const secureBaseUrl = useSecureUrl()
+    const secureBaseUrl = useSecureUrl();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         fetch('/data.json', {
@@ -30,6 +32,8 @@ const Dashboard = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        setLoading(true)
 
         const productName = e.target.productName.value;
         const brandName = e.target.brandName.value;
@@ -56,8 +60,11 @@ const Dashboard = () => {
                 toast.success('Product updated successfully')
                 e.target.reset();
             }
+            setLoading(false)
         } catch (error) {
             console.log(error.message)
+            toast.error(error.message)
+            setLoading(false)
         }
     }
 
@@ -133,12 +140,12 @@ const Dashboard = () => {
                         />
                     </div>
                     <div>
-                        <button
+                        {!loading ? <button
                             type="submit"
                             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Submit
-                        </button>
+                        </button> : <Loading />}
                     </div>
                 </form>
             </div>
