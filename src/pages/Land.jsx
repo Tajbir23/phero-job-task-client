@@ -16,6 +16,7 @@ const Land = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     fetch('/data.json', {
@@ -39,16 +40,20 @@ const Land = () => {
 
 
   useEffect(() => {
+    setLoading(true)
     baseUrl.get(`/products?search=${filter?.search}&&brand_name=${brandName}&&category=${filter?.category}&&price_range=${filter?.price_range}&&sort_order=${filter?.sort_order}&&current_page=${currentPage}`)
     .then((response) => response.data)
     .then((data) => {
       setProducts(data.result)
       setTotalPage(data.totalPage)
+      setLoading(false)
     })
-    .catch((error) => console.log(error))
+    .catch((error) => {
+      setLoading(false)
+      console.log(error)
+    })
   },[filter, brandName, currentPage])
 
-  console.log(products)
 
   return (
     <div className="">
@@ -120,7 +125,10 @@ const Land = () => {
         )}
       </div>
 
-      {/* Products section */}
+      
+      {loading && <div className="h-[calc(100vh-300px)] flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Loading...</h1>
+      </div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {products?.map(product => (
           <div key={product?.id} className=" p-4">
