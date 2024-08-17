@@ -75,7 +75,7 @@ const SignUp = () => {
 
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -93,10 +93,12 @@ const SignUp = () => {
         photoUrl: user.photoURL,
         role: "user",
       });
+      setLoading(false)
       navigate(from, { replace: true });
     } catch (error) {
       toast.error(error.message);
       console.log(error.message);
+      setLoading(false)
     }
   };
   return (
@@ -182,7 +184,10 @@ const SignUp = () => {
               )}
             </div>
             <div className="my-6 space-y-4">
-              <button
+
+              {loading ? <div className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">
+                  <div className="w-6 h-6 m-auto border-4 border-dashed rounded-full animate-spin dark:border-white"></div>
+                </div> : <button
                 aria-label="Login with Google"
                 type="button"
                 onClick={handleGoogleLogin}
@@ -196,7 +201,8 @@ const SignUp = () => {
                   <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
                 </svg>
                 <p>Login with Google</p>
-              </button>
+              </button>}
+              
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-600">
               Do you have an account?
