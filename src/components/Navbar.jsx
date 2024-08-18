@@ -24,7 +24,8 @@ const Navbar = () => {
     <>
       <li><NavLink to="/">Home</NavLink></li>
       <NavLink to="/dashboard" >Dashboard</NavLink>
-      {categories.map((item, i) => <li key={i}><NavLink to={item}>{item}</NavLink></li>)}
+      <NavLink to="/contact" >Contact</NavLink>
+      {/* {categories.map((item, i) => <li key={i}><NavLink to={item}>{item}</NavLink></li>)} */}
     </>
   )
   return (
@@ -53,7 +54,7 @@ const Navbar = () => {
       </div>
 
       {open && <nav className=" w-full bg-white shadow-md px-3 py-3 border-b-black">
-        <ul className="flex gap-5 justify-between px-5 flex-wrap">{navLink}</ul>
+        <ul className="flex gap-5 px-5 flex-wrap">{navLink}</ul>
       </nav>}
 
     </div>

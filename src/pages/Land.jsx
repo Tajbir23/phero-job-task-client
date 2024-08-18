@@ -130,8 +130,8 @@ const Land = () => {
         <h1 className="text-4xl font-bold">Loading...</h1>
       </div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {products?.map(product => (
-          <div key={product?.id} className=" p-4">
+        {products?.map((product, index) => (
+          <div key={index} className=" p-4">
             <div className="bg-white shadow-lg rounded-lg overflow-hidden h-full">
               <img src={product?.image} alt={product?.ProductName} className="w-full md:h-64 h-44 object-cover" />
               <div className="p-4">
